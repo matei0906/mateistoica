@@ -5,276 +5,382 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matei Stoica - Developer</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1e2124;
+            font-family: 'Cal Sans', sans-serif;
+            color: #fff;
+        }
+
+        /* ===== ANIMATION STYLES ===== */
+        
+        /* Terminal animation overlay - covers entire screen */
+        #terminal-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #1e2124;
+            z-index: 9999;
+            display: flex;
+            align-items: flex-start;
+            padding: 2rem;
+            font-family: 'Cal Sans', sans-serif;
+            color: #fff;
+            font-size: 4rem;
+        }
+
+        /* Hide animation when complete */
+        #terminal-animation.fade-out {
+            animation: fadeOut 1s ease-out forwards;
+        }
+
+        /* Terminal prompt and text container */
+        .terminal-content {
+            display: flex;
+            align-items: center;
+        }
+
+        /* The ">" symbol */
+        .prompt {
+            margin-right: 0.5rem;
+            color: #fff;
+        }
+
+        /* Container for typed text */
+        .typed-text {
+            position: relative;
+        }
+
+        /* Blinking cursor animation */
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: #fff;
+            margin-left: 2px;
+            animation: blink 0.7s infinite;
+        }
+
+        /* Cursor blinks before typing starts */
+        @keyframes blink {
+            0%, 49% {
+                opacity: 1;
+            }
+            50%, 100% {
+                opacity: 0;
+            }
+        }
+
+        /* Fade out the entire animation screen */
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* Hide main content initially */
+        body.loading #main-content {
+            opacity: 0;
+        }
+
+        /* Fade in main content after animation */
+        #main-content {
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+
+        #main-content.visible {
+            opacity: 1;
+        }
+
+        /* ===== NAVIGATION MENU STYLES ===== */
+        
+        /* Navigation container - positioned in top-left */
+        .nav-container {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 1000;
+        }
+
+        /* Dropdown toggle button */
+        .nav-toggle {
+            font-size: 4rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: 'Cal Sans', sans-serif;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        /* Rotate arrow on hover */
+        .nav-container:hover .nav-toggle {
+            transform: rotate(90deg);
+        }
+
+        /* Dropdown menu */
+        .nav-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        }
+
+        /* Show menu on hover */
+        .nav-container:hover .nav-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Navigation links */
+        .nav-menu a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 2rem;
+            padding: 0.5rem 0;
+            font-family: 'Cal Sans', sans-serif;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.7;
+        }
+
+        /* ===== MAIN CONTENT AREA ===== */
+        .content-wrapper {
+            padding: 8rem 4rem 4rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Sections for smooth scrolling */
+        section {
+            min-height: 50vh;
+            padding: 4rem 0;
+        }
+
+         /* Main header styling */
+         h1 {
+             font-size: 6rem;
+             margin-bottom: 3rem;
+             animation: glitch 0.5s ease-out infinite;
+         }
+
+         section h2 {
+             font-size: 3rem;
+             margin-bottom: 2rem;
+         }
+
+        section p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+        }
+        section h2 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        }
+        /* Simple glitch effect */
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .glitch::before {
+            animation: glitch-anim 2s infinite;
+            color: #ff00ff;
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-anim 3s infinite reverse;
+            color: #00ffff;
+            z-index: -2;
+        }
+
+        @keyframes glitch-anim {
+            0%, 100% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+        }
+    </style>
 </head>
-<body>
-    <!-- Navigation Toggle Button -->
-    <button class="nav-toggle" id="navToggle">
-        <span class="nav-toggle-icon">></span>
-    </button>
-
-    <!-- Vertical Navigation Sidebar -->
-    <nav class="vertical-nav" id="verticalNav">
-        <div class="nav-header">
-            <h1 class="nav-logo">Matei Stoica</h1>
-            <button class="nav-close" id="navClose">
-                <span class="nav-close-icon">×</span>
-            </button>
+<body class="loading">
+    
+    <!-- Terminal Animation Overlay -->
+    <div id="terminal-animation">
+        <div class="terminal-content">
+            <span class="prompt">&gt;</span>
+            <span class="typed-text" id="typed-text"></span>
+            <span class="cursor" id="cursor"></span>
         </div>
-        <ul class="vertical-nav-menu">
-            <li class="vertical-nav-item">
-                <a href="#about" class="vertical-nav-link">
-                    <i class="fas fa-user"></i>
-                    <span>About</span>
-                </a>
-            </li>
-            <li class="vertical-nav-item">
-                <a href="#portfolio" class="vertical-nav-link">
-                    <i class="fas fa-briefcase"></i>
-                    <span>Portfolio</span>
-                </a>
-            </li>
-            <li class="vertical-nav-item">
-                <a href="#connect" class="vertical-nav-link">
-                    <i class="fas fa-envelope"></i>
-                    <span>Connect</span>
-                </a>
-            </li>
-            <li class="vertical-nav-item">
-                <a href="#links" class="vertical-nav-link">
-                    <i class="fas fa-link"></i>
-                    <span>Links</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    </div>
 
-    <!-- Background Overlay -->
-    <div class="nav-overlay" id="navOverlay"></div>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">Matei Stoica</h1>
-                    <p class="hero-description">
-                        Full-Stack Developer passionate about creating innovative web solutions. 
-                        I specialize in modern web technologies and user-centered design.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#portfolio" class="btn btn-primary btn-large">View My Work</a>
-                        <a href="#connect" class="btn btn-outline btn-large">Get In Touch</a>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="floating-cards">
-                        <div class="card card-1">
-                            <i class="fas fa-code"></i>
-                            <span>Frontend</span>
-                        </div>
-                        <div class="card card-2">
-                            <i class="fas fa-server"></i>
-                            <span>Backend</span>
-                        </div>
-                        <div class="card card-3">
-                            <i class="fas fa-mobile-alt"></i>
-                            <span>Mobile</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- Main Website Content -->
+    <div id="main-content">
+        <!-- Navigation Menu -->
+        <nav class="nav-container">
+            <div class="nav-toggle">&gt;</div>
+            <div class="nav-menu">
+                <a href="#about">> About</a>
+                <a href="#skills">> Skills</a>
+                <a href="#work">> Work</a>
+                <a href="#contact">>Contact</a>
             </div>
-        </section>
+        </nav>
 
-        <!-- About Section -->
-        <section class="about" id="about">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Passionate developer with a love for clean code and innovative solutions</p>
-                
-                <div class="about-content">
-                    <div class="about-text">
-                        <h2>Hello, I'm Matei Stoica</h2>
-                        <p>
-                            I'm a passionate full-stack developer with over 5 years of experience creating 
-                            digital solutions that make a difference. I love turning complex problems into 
-                            simple, beautiful, and intuitive designs.
-                        </p>
-                        <p>
-                            When I'm not coding, you can find me exploring new technologies, contributing 
-                            to open-source projects, or sharing knowledge with the developer community.
-                        </p>
-                        <p>
-                            I believe in the power of technology to solve real-world problems and create 
-                            meaningful experiences for users.
-                        </p>
-                    </div>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <h3>50+</h3>
-                            <p>Projects Completed</p>
-                        </div>
-                        <div class="stat">
-                            <h3>3+</h3>
-                            <p>Years Experience</p>
-                        </div>
-                        <div class="stat">
-                            <h3>100%</h3>
-                            <p>Client Satisfaction</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Content Sections -->
+        <div class="content-wrapper">
+            <h1 class="glitch" data-text="Matei Stoica">Matei Stoica</h1>
+            <h2 class="glitch" data-text="Troy, NY">Troy, NY</h2>
+            <section id="about">
+                <h2>About Me</h2>
+                <p>I'm a driven computer science student at RPI. I'm interested in front & backend software development, machine learning, and artificial intelligence. When taken away from a screen, you'll find me playing guitar, skateboarding, or working on my car.</p>
+            </section>
 
-        <!-- Features/Skills Section -->
-        <section class="features" id="portfolio">
-            <div class="container">
-                <h2 class="section-title">My Skills</h2>
-                <p class="section-subtitle">Technologies and tools I work with</p>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Frontend Development</h3>
-                        <p>React, Vue.js, HTML5, CSS3, JavaScript, TypeScript</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-server"></i>
-                        </div>
-                        <h3>Backend Development</h3>
-                        <p>Node.js, Python, PHP, Express, Django, Laravel</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h3>Database Management</h3>
-                        <p>MySQL, PostgreSQL, MongoDB, Redis</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-cloud"></i>
-                        </div>
-                        <h3>Cloud & DevOps</h3>
-                        <p>AWS, Docker, Kubernetes, CI/CD</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h3>Mobile Development</h3>
-                        <p>React Native, Flutter, Progressive Web Apps</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <h3>Tools & Others</h3>
-                        <p>Git, Figma, Adobe Creative Suite, Agile</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <section id="skills">
+                <h2>My Skills</h2>
+                <p>Your skills content goes here...</p>
+            </section>
 
-        <!-- Contact Section -->
-        <section class="contact" id="connect">
-            <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Let's work together on your next project</p>
+            <section id="work">
+                <h2>My Work</h2>
+                <p>Your work/portfolio content goes here...</p>
+            </section>
+
+            <section id="contact">
+                <h2>Let's get in touch!</h2>
+                <p>Your contact information goes here...</p>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // ===== ANIMATION JAVASCRIPT =====
+        
+        // Configuration
+        const textToType = "./MateiStoica";
+        const typingSpeed = 100; // milliseconds per character
+        const cursorBlinkTime = 800; // how long cursor blinks before typing
+        const fadeDelay = 500; // delay before fade starts after typing completes
+        
+        // Get DOM elements
+        const typedTextElement = document.getElementById('typed-text');
+        const cursorElement = document.getElementById('cursor');
+        const animationScreen = document.getElementById('terminal-animation');
+        const mainContent = document.getElementById('main-content');
+        
+        // Start animation sequence
+        function startAnimation() {
+            // Wait for cursor to blink a bit
+            setTimeout(() => {
+                typeText();
+            }, cursorBlinkTime);
+        }
+        
+        // Typing animation function
+        function typeText() {
+            let charIndex = 0;
+            
+            // Stop cursor blinking during typing
+            cursorElement.style.animation = 'none';
+            cursorElement.style.opacity = '1';
+            
+            const typingInterval = setInterval(() => {
+                if (charIndex < textToType.length) {
+                    // Add next character
+                    typedTextElement.textContent += textToType[charIndex];
+                    charIndex++;
+                } else {
+                    // Typing complete
+                    clearInterval(typingInterval);
+                    finishAnimation();
+                }
+            }, typingSpeed);
+        }
+        
+        // Finish animation and transition to homepage
+        function finishAnimation() {
+            setTimeout(() => {
+                // Start fade out
+                animationScreen.classList.add('fade-out');
                 
-                <div class="contact-content">
-                    <form class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <input type="text" id="message" name="message" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-large">Send Message</button>
-                    </form>
+                // Show main content
+                document.body.classList.remove('loading');
+                mainContent.classList.add('visible');
+                
+                // Remove animation screen from DOM after fade completes
+                setTimeout(() => {
+                    animationScreen.remove();
+                }, 1000);
+            }, fadeDelay);
+        }
+        
+        // Start everything when page loads
+        window.addEventListener('load', startAnimation);
+
+        // ===== SMOOTH SCROLLING FOR NAVIGATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
                     
-                    <div class="contact-info">
-                        <h3>Contact Information</h3>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>matei.stoica@email.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+1 (555) 123-4567</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Bucharest, Romania</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Links Section -->
-        <section class="links" id="links">
-            <div class="container">
-                <h2 class="section-title">Connect With Me</h2>
-                <p class="section-subtitle">Follow me on social media and check out my work</p>
-                
-                <div class="social-links">
-                    <a href="#" class="social-link">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-link">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Matei Stoica</h3>
-                    <p>Full-Stack Developer passionate about creating innovative web solutions.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#connect">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li>matei.stoica@email.com</li>
-                        <li>+1 (555) 123-4567</li>
-                        <li>Bucharest, Romania</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Matei Stoica. All rights reserved.</p>
-            </div>
-        </div>
-    </footer> 
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
