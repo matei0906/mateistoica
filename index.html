@@ -2,251 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matei Stoica - Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Matei Stoica</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        /* ===== GLOBAL STYLES ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #1e2124;
-            font-family: 'Cal Sans', sans-serif;
-            color: #fff;
-        }
-
-        /* ===== ANIMATION STYLES ===== */
-        
-        /* Terminal animation overlay - covers entire screen */
-        #terminal-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #1e2124;
-            z-index: 9999;
-            display: flex;
-            align-items: flex-start;
-            padding: 2rem;
-            font-family: 'Cal Sans', sans-serif;
-            color: #fff;
-            font-size: 4rem;
-        }
-
-        /* Hide animation when complete */
-        #terminal-animation.fade-out {
-            animation: fadeOut 1s ease-out forwards;
-        }
-
-        /* Terminal prompt and text container */
-        .terminal-content {
-            display: flex;
-            align-items: center;
-        }
-
-        /* The ">" symbol */
-        .prompt {
-            margin-right: 0.5rem;
-            color: #fff;
-        }
-
-        /* Container for typed text */
-        .typed-text {
-            position: relative;
-        }
-
-        /* Blinking cursor animation */
-        .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.2em;
-            background-color: #fff;
-            margin-left: 2px;
-            animation: blink 0.7s infinite;
-        }
-
-        /* Cursor blinks before typing starts */
-        @keyframes blink {
-            0%, 49% {
-                opacity: 1;
-            }
-            50%, 100% {
-                opacity: 0;
-            }
-        }
-
-        /* Fade out the entire animation screen */
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-
-        /* Hide main content initially */
-        body.loading #main-content {
-            opacity: 0;
-        }
-
-        /* Fade in main content after animation */
-        #main-content {
-            opacity: 0;
-            transition: opacity 1s ease-in;
-        }
-
-        #main-content.visible {
-            opacity: 1;
-        }
-
-        /* ===== NAVIGATION MENU STYLES ===== */
-        
-        /* Navigation container - positioned in top-left */
-        .nav-container {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            z-index: 1000;
-        }
-
-        /* Dropdown toggle button */
-        .nav-toggle {
-            font-size: 4rem;
-            color: #fff;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-            font-family: 'Cal Sans', sans-serif;
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-
-        /* Rotate arrow on hover */
-        .nav-container:hover .nav-toggle {
-            transform: rotate(90deg);
-        }
-
-        /* Dropdown menu */
-        .nav-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            margin-top: 1rem;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-        }
-
-        /* Show menu on hover */
-        .nav-container:hover .nav-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        /* Navigation links */
-        .nav-menu a {
-            display: block;
-            color: #fff;
-            text-decoration: none;
-            font-size: 2rem;
-            padding: 0.5rem 0;
-            font-family: 'Cal Sans', sans-serif;
-            transition: opacity 0.2s ease;
-        }
-
-        .nav-menu a:hover {
-            opacity: 0.7;
-        }
-
-        /* ===== MAIN CONTENT AREA ===== */
-        .content-wrapper {
-            padding: 8rem 4rem 4rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* Sections for smooth scrolling */
-        section {
-            min-height: 50vh;
-            padding: 4rem 0;
-        }
-
-         /* Main header styling */
-         h1 {
-             font-size: 6rem;
-             margin-bottom: 3rem;
-             animation: glitch 0.5s ease-out infinite;
-         }
-
-         section h2 {
-             font-size: 3rem;
-             margin-bottom: 2rem;
-         }
-
-        section p {
-            font-size: 1.5rem;
-            line-height: 1.6;
-        }
-        section h2 {
-        font-size: 3rem;
-        margin-bottom: 2rem;
-        }
-        /* Simple glitch effect */
-        .glitch {
-            position: relative;
-            display: inline-block;
-        }
-
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .glitch::before {
-            animation: glitch-anim 2s infinite;
-            color: #ff00ff;
-            z-index: -1;
-        }
-
-        .glitch::after {
-            animation: glitch-anim 3s infinite reverse;
-            color: #00ffff;
-            z-index: -2;
-        }
-
-        @keyframes glitch-anim {
-            0%, 100% {
-                transform: translate(0);
-            }
-            20% {
-                transform: translate(-2px, 2px);
-            }
-            40% {
-                transform: translate(-2px, -2px);
-            }
-            60% {
-                transform: translate(2px, 2px);
-            }
-            80% {
-                transform: translate(2px, -2px);
-            }
-        }
-    </style>
+    <script src="https://unpkg.com/powerglitch@latest/dist/powerglitch.min.js"></script>
 </head>
 <body class="loading">
     
@@ -258,12 +25,11 @@
             <span class="cursor" id="cursor"></span>
         </div>
     </div>
-
     <!-- Main Website Content -->
     <div id="main-content">
         <!-- Navigation Menu -->
         <nav class="nav-container">
-            <div class="nav-toggle">&gt;</div>
+            <div class="nav-toggle mobile-nav-toggle">&gt;</div>
             <div class="nav-menu">
                 <a href="#about">> About</a>
                 <a href="#skills">> Skills</a>
@@ -271,116 +37,257 @@
                 <a href="#contact">>Contact</a>
             </div>
         </nav>
-
+        
+        <!-- Floating Projects Showcase -->
+        <div class="projects-showcase">
+            <div class="showcase-toggle">
+                <span class="showcase-label">Recent Projects</span>
+                <i class="fas fa-code"></i>
+            </div>
+            <div class="projects-container">
+                <div class="project-box" onclick="openProject('portfolio')">
+                    <div class="project-title">Resonance</div>
+                    <div class="project-description">
+                        Campus Music Community Web App for RPI students.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Socket.io</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/matei0906/rpisocial" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="https://github.com/matei0906/rpisocial" class="project-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project-box" onclick="openProject('ai-project')">
+                    <div class="project-title">CRVE</div>
+                    <div class="project-description">
+                        AI-Powered Driving Route Generator for Car Enthusiasts.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">OpenAI</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Demo
+                        </a>
+                    </div>
+                </div>
+                
+                
+                <div class="project-box" onclick="openProject('portfolio-website')">
+                    <div class="project-title">Portfolio Website</div>
+                    <div class="project-description">
+                        Personal portfolio website.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/matei0906/mateistoica" class="project-link">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="https://mateistoica.com" class="project-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- Content Sections -->
         <div class="content-wrapper">
-            <h1 class="glitch" data-text="Matei Stoica">Matei Stoica</h1>
-            <h2 class="glitch" data-text="Troy, NY">Troy, NY</h2>
-            <section id="about">
-                <h2>About Me</h2>
-                <p>I'm a driven computer science student at RPI. I'm interested in front & backend software development, machine learning, and artificial intelligence. When taken away from a screen, you'll find me playing guitar, skateboarding, or working on my car.</p>
-            </section>
+            <div class="name-section">
+                <h1 class="glitch">Matei Stoica</h1>
+                <div class="social-buttons">
+                    <a href="https://www.linkedin.com/in/matei-stoica-698aa4348/" target="_blank" class="linkedin-button">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/matei0906" target="_blank" class="github-button">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+            <div class="gradient-line"></div>
+            <h3 class="glitch">Rensselaer Polytechnic Institute</h3>
+            <!-- Draggable Windows -->
+            <div class="windows-container">
+                <!-- About Window -->
+                <div class="window" id="about-window">
+                    <div class="window-header">
+                        <div class="window-title">About Me</div>
+                        <div class="window-controls">
+                            <button class="window-btn minimize">−</button>
+                            <button class="window-btn maximize">□</button>
+                            <button class="window-btn close">×</button>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                        <p>I specialize in front & backend software development, machine learning, and artificial intelligence. With programming experience in C++, Java, Python, Javascript, HTML & CSS, I continue to build projects intertwining with personal passions of mine as well as full-stack professional programs. See some of my work below!</p>
+                    </div>
+                </div>
 
-            <section id="skills">
-                <h2>My Skills</h2>
-                <p>Your skills content goes here...</p>
-            </section>
-
-            <section id="work">
-                <h2>My Work</h2>
-                <p>Your work/portfolio content goes here...</p>
-            </section>
-
-            <section id="contact">
-                <h2>Let's get in touch!</h2>
-                <p>Your contact information goes here...</p>
-            </section>
+                <!-- Skills Window -->
+                <div class="window" id="skills-window">
+                    <div class="window-header">
+                        <div class="window-title">My Skills</div>
+                        <div class="window-controls">
+                            <button class="window-btn minimize">−</button>
+                            <button class="window-btn maximize">□</button>
+                            <button class="window-btn close">×</button>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                <p>C++, Java, Python, Javascript, HTML & CSS</p>
         </div>
     </div>
 
-    <script>
-        // ===== ANIMATION JAVASCRIPT =====
-        
-        // Configuration
-        const textToType = "./MateiStoica";
-        const typingSpeed = 100; // milliseconds per character
-        const cursorBlinkTime = 800; // how long cursor blinks before typing
-        const fadeDelay = 500; // delay before fade starts after typing completes
-        
-        // Get DOM elements
-        const typedTextElement = document.getElementById('typed-text');
-        const cursorElement = document.getElementById('cursor');
-        const animationScreen = document.getElementById('terminal-animation');
-        const mainContent = document.getElementById('main-content');
-        
-        // Start animation sequence
-        function startAnimation() {
-            // Wait for cursor to blink a bit
-            setTimeout(() => {
-                typeText();
-            }, cursorBlinkTime);
-        }
-        
-        // Typing animation function
-        function typeText() {
-            let charIndex = 0;
-            
-            // Stop cursor blinking during typing
-            cursorElement.style.animation = 'none';
-            cursorElement.style.opacity = '1';
-            
-            const typingInterval = setInterval(() => {
-                if (charIndex < textToType.length) {
-                    // Add next character
-                    typedTextElement.textContent += textToType[charIndex];
-                    charIndex++;
-                } else {
-                    // Typing complete
-                    clearInterval(typingInterval);
-                    finishAnimation();
-                }
-            }, typingSpeed);
-        }
-        
-        // Finish animation and transition to homepage
-        function finishAnimation() {
-            setTimeout(() => {
-                // Start fade out
-                animationScreen.classList.add('fade-out');
-                
-                // Show main content
-                document.body.classList.remove('loading');
-                mainContent.classList.add('visible');
-                
-                // Remove animation screen from DOM after fade completes
-                setTimeout(() => {
-                    animationScreen.remove();
-                }, 1000);
-            }, fadeDelay);
-        }
-        
-        // Start everything when page loads
-        window.addEventListener('load', startAnimation);
+                <!-- Work Window -->
+                <div class="window" id="work-window">
+                    <div class="window-header">
+                        <div class="window-title">My Work</div>
+                        <div class="window-controls">
+                            <button class="window-btn minimize">−</button>
+                            <button class="window-btn maximize">□</button>
+                            <button class="window-btn close">×</button>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                        <div class="project-links-template">
+                            <h3>Featured Projects</h3>
+                            
+                            <div class="project-item">
+                                <h4>Resonance</h4>
+                                <p>RPI Campus Music Community Web App</p>
+                                <div class="project-links">
+                                    <a href="https://github.com/matei0906/rpisocial" class="project-link-btn">
+                                        <i class="fab fa-github"></i>
+                                        GitHub
+                                    </a>
+                                    <a href="https://github.com/matei0906/rpisocial" class="project-link-btn">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Live Demo
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="project-item">
+                                <h4>CRVE</h4>
+                                <p>AI-Powered Driving Route Generator for Car Enthusiasts</p>
+                                <div class="project-links">
+                                    <a href="#" class="project-link-btn">
+                                        <i class="fab fa-github"></i>
+                                        GitHub
+                                    </a>
+                                    <a href="#" class="project-link-btn">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Demo
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="project-item">
+                                <h4>Portfolio Website</h4>
+                                <p>Personal portfolio website.</p>
+                                <div class="project-links">
+                                    <a href="https://github.com/matei0906/mateistoica" class="project-link-btn">
+                                        <i class="fab fa-github"></i>
+                                        GitHub
+                                    </a>
+                                    <a href="https://mateistoica.com" class="project-link-btn">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        Live App
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        // ===== SMOOTH SCROLLING FOR NAVIGATION =====
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-menu a');
+                <!-- Contact Window -->
+                <div class="window" id="contact-window">
+                    <div class="window-header">
+                        <div class="window-title">Let's get in touch!</div>
+                        <div class="window-controls">
+                            <button class="window-btn minimize">−</button>
+                            <button class="window-btn maximize">□</button>
+                            <button class="window-btn close">×</button>
+                        </div>
+                    </div>
+                    <div class="window-content">
+                <p>me@mateistoica.com</p>
+                <p>Or use the contact form below!</p>
+                    </div>
+                </div>
+            </div>
             
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    
-                    if (targetSection) {
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
+            <!-- Contact Form Section -->
+            <div class="contact-form-section">
+                <h2 class="glitch">Get In Touch</h2>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn glitch">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Send Message</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="copyright">© <span id="current-year"></span> Matei Stoica</p>
+                <a href="https://github.com/matei0906" target="_blank" class="footer-github-btn glitch">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
