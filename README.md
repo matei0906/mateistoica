@@ -84,12 +84,6 @@ To add new projects to the work section:
 3. Add a new project item with the same structure as existing ones
 4. Include GitHub and live demo links
 
-### Modifying Contact Information
-Update the contact form email address in `script.js`:
-```javascript
-const mailtoLink = `mailto:your-email@domain.com?subject=...`;
-```
-
 ## 🔧 Technical Details
 
 ### Window Management

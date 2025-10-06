@@ -252,7 +252,7 @@
             <!-- Contact Form Section -->
             <div class="contact-form-section">
                 <h2 class="glitch">Get In Touch</h2>
-                <form class="contact-form" id="contact-form">
+                <form class="contact-form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -274,6 +274,12 @@
                         <span>Send Message</span>
                     </button>
                 </form>
+                
+                <!-- Success message (hidden by default) -->
+                <div id="form-success" class="form-success" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Thank you! Your message has been sent successfully.</p>
+                </div>
             </div>
         </div>
         

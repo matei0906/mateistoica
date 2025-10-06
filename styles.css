@@ -531,14 +531,11 @@ section h3 {
 /* ===== MOBILE FIXED VIEWPORT ===== */
 /* Mobile-specific styles - completely separate from web view */
 @media screen and (max-width: 768px) {
-    /* Fixed mobile viewport */
+    /* Mobile viewport - allow normal scrolling */
     html, body {
         width: 100vw;
-        height: 100vh;
         overflow-x: hidden;
-        position: fixed;
-        top: 0;
-        left: 0;
+        position: relative;
     }
     
     /* Mobile Navigation - Hidden on mobile */
@@ -566,34 +563,27 @@ section h3 {
         display: none !important;
     }
     
-    /* Mobile Intro Animation - Smaller font sizes */
-    .intro-animation {
-        font-size: 1rem !important;
-        line-height: 1.3 !important;
+    /* Mobile Intro Animation - Completely disabled */
+    #terminal-animation {
+        display: none !important;
     }
     
-    .intro-animation .prompt {
-        font-size: 1rem !important;
+    /* Skip animation on mobile - show content immediately */
+    body.loading #main-content {
+        opacity: 1 !important;
     }
     
-    .intro-animation .typed-text {
-        font-size: 1rem !important;
+    #main-content {
+        opacity: 1 !important;
+        transition: none !important;
     }
     
-    .intro-animation .cursor {
-        font-size: 1rem !important;
-    }
-    
-    /* Mobile Content - Scrollable container starting from top */
+    /* Mobile Content - Normal flow container */
     .content-wrapper {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        overflow-y: auto;
+        position: relative;
         padding: 1rem;
         box-sizing: border-box;
+        min-height: 100vh;
     }
     
     /* Mobile Name Section - Stacked layout at top */
@@ -1133,11 +1123,36 @@ section h3 {
     color: #ffffff;
 }
 
+/* Form success message */
+.form-success {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+    color: #00ff00;
+    font-family: 'Cal Sans', sans-serif;
+}
+
+.form-success i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-success p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
 /* Contact form mobile styles */
 @media screen and (max-width: 768px) {
     .contact-form-section {
-        margin-top: 2rem;
-        padding: 1rem 0;
+        margin-top: 15rem;
+        padding: 4rem 0;
+        margin-bottom: 6rem;
     }
     
     .contact-form-section h2 {
@@ -1224,8 +1239,12 @@ section h3 {
 /* Footer mobile styles */
 @media screen and (max-width: 768px) {
     .footer {
+        position: relative;
         margin-top: 2rem;
         padding: 1.5rem 0;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .footer-content {
@@ -1250,6 +1269,11 @@ section h3 {
     
     .footer-github-btn span {
         font-size: 0.85rem;
+    }
+    
+    /* Remove extra padding since footer is no longer fixed */
+    .content-wrapper {
+        padding-bottom: 2rem !important;
     }
 }
 

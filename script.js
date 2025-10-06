@@ -61,7 +61,23 @@ function finishAnimation() {
 }
 
 // Start everything when page loads
-window.addEventListener('load', startAnimation);
+window.addEventListener('load', function() {
+    // Check if mobile device
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // Skip animation on mobile - show content immediately
+        document.body.classList.remove('loading');
+        document.getElementById('main-content').classList.add('visible');
+        const animationScreen = document.getElementById('terminal-animation');
+        if (animationScreen) {
+            animationScreen.remove();
+        }
+    } else {
+        // Run animation on desktop
+        startAnimation();
+    }
+});
 
 // ===== PROJECTS SHOWCASE JAVASCRIPT =====
 
@@ -410,32 +426,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-            
-            // Simple validation
-            if (!name || !email || !subject || !message) {
-                alert('Please fill in all fields.');
-                return;
-            }
-            
-            // Create mailto link (you can replace this with actual form submission)
-            const mailtoLink = `mailto:me@mateistoica.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-            
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            // Show success message
-            alert('Thank you for your message! Your email client should open with a pre-filled message.');
-            
-            // Reset form
-            contactForm.reset();
+            // Let the form submit naturally to Formspree
+            // Formspree will handle the submission and redirect back
         });
     }
 });
