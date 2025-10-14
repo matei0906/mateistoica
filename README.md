@@ -43,7 +43,7 @@ My portfolio website showcasing my personal work as a computer science student a
 - Different intensity levels for different elements
 - Hover-activated for most elements, periodic for social buttons
 
-## 📞 Contact
+##  Contact
 
 - **Email**: me@mateistoica.com
 - **GitHub**: [github.com/matei0906](https://github.com/matei0906)
@@ -64,3 +64,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 
 *Built by Matei Stoica*
+
