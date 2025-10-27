@@ -4,7 +4,7 @@
 const textToType = "./MateiStoica";
 const typingSpeed = 100; // milliseconds per character
 const cursorBlinkTime = 800; // how long cursor blinks before typing
-const fadeDelay = 1500; // delay before fade starts after all typing completes
+const fadeDelay = 750; // delay before fade starts after all typing completes
 
 // Get DOM elements
 const typedTextElement = document.getElementById('typed-text');
