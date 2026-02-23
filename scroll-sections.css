@@ -1,0 +1,374 @@
+/* =====================================================================
+   SCROLL-SECTIONS.CSS
+   Adds the fixed-hero + sliding-panel scroll system on top of styles.css
+   All colours, fonts and surfaces match the original site aesthetic.
+   ===================================================================== */
+
+/* ── Scroll driver: sits in normal flow to create scroll height ─── */
+#scroll-driver {
+    /* Height set dynamically by JS: (panels+1) × 100vh */
+    pointer-events: none;
+    position: relative;
+}
+
+/* ── Base body tweak: no overflow-x, keep overflow-y for scrolling ─ */
+body {
+    overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   HERO  —  fixed, always behind the panels  (z-index 0)
+══════════════════════════════════════════════════════════════════ */
+#hero {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;      /* content anchored to bottom, like original */
+    background-color: #1e2124;
+    pointer-events: auto;
+}
+
+/* Wrapper mirrors .content-wrapper padding/max-width */
+.content-wrapper-hero {
+    padding: 8rem 4rem 4rem 4rem;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+
+    /* CSS vars needed by ticker/3d children */
+    --projects-border: rgba(255,255,255,0.07);
+    --projects-muted: rgba(240,240,245,0.4);
+    --projects-accent: #c8ff00;
+}
+
+/* Scroll-down hint arrow */
+.hero-scroll-hint {
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'DM Mono', 'Cal Sans', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    animation: hint-bounce 2.4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes hint-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0);   opacity: 0.3; }
+    50%       { transform: translateX(-50%) translateY(8px); opacity: 0.7; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PANELS  —  fixed sheets that slide up from below
+══════════════════════════════════════════════════════════════════ */
+.panel {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+
+    /* Same dark background as the site */
+    background-color: #1e2124;
+
+    /* Leading accent stripe — warm orange/red matching gradient-line palette */
+    border-top: 3px solid #FF4500;
+
+    /* Start off-screen below */
+    transform: translateY(100vh);
+    will-change: transform;
+
+    /* Depth shadow so panels feel like sheets stacking */
+    box-shadow: 0 -20px 60px rgba(0,0,0,0.6);
+
+    /* Panel itself doesn't scroll — inner wrapper does */
+    overflow: hidden;
+
+    pointer-events: none;   /* JS enables when active */
+}
+
+.panel.is-active {
+    pointer-events: auto;
+}
+
+/* Inner scrollable area */
+.panel-scroll-inner {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Match content-wrapper padding */
+    padding: 5rem 4rem 4rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    /* CSS vars for 3d section */
+    --projects-border: rgba(255,255,255,0.07);
+    --projects-muted: rgba(240,240,245,0.4);
+    --projects-accent: #c8ff00;
+    --projects-surface: #13131a;
+    --projects-text: #f0f0f5;
+    --card-w: 280px;
+    --card-h: 200px;
+    --gap: 24px;
+}
+
+/* Contact panel: no scrollbar, footer at bottom full width */
+#panel-3 {
+    display: flex;
+    flex-direction: column;
+}
+#panel-3 .panel-scroll-inner {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+}
+#panel-3 .footer {
+    flex-shrink: 0;
+    width: 100%;
+    margin-top: 0;
+    box-sizing: border-box;
+}
+#panel-3 .contact-form-section {
+    margin-top: 0;
+    padding: 0;
+    flex-shrink: 0;
+}
+#panel-3 .contact-form-section h2 {
+    margin-bottom: 1.25rem;
+}
+#panel-3 .contact-form {
+    padding: 1.5rem;
+}
+#panel-3 .form-group {
+    margin-bottom: 1rem;
+}
+#panel-3 .form-group textarea {
+    min-height: 96px;
+}
+
+/* Thin drag-indicator bar at the top of each panel */
+.panel-drag-bar {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.15);
+    pointer-events: none;
+}
+
+/* Panel sections inherit original section padding */
+.panel-section {
+    padding-top: 0;
+}
+
+/* ── Keep original section h2 style inside panels ── */
+.panel-scroll-inner section h2,
+.panel-scroll-inner h2 {
+    font-size: 3rem;
+    font-family: 'Hackdaddy', 'Orbitron', 'Cal Sans', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   NAV DOTS  —  right-edge position indicator
+══════════════════════════════════════════════════════════════════ */
+#nav-dots {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: auto;
+}
+
+.nav-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s, border-color 0.25s;
+}
+
+.nav-dot:hover {
+    background: rgba(255,255,255,0.4);
+}
+
+.nav-dot.active {
+    background: #FF4500;       /* warm accent matches border-top */
+    border-color: #FF4500;
+    transform: scale(1.5);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ABOUT  —  two-column layout inside panel-0
+══════════════════════════════════════════════════════════════════ */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 8px;
+}
+
+.about-bio p {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.8);
+    font-family: 'Cal Sans', sans-serif;
+}
+
+.about-bio p + p {
+    margin-top: 16px;
+}
+
+.about-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fact {
+    border-left: 3px solid #FF4500;
+    padding-left: 18px;
+}
+
+.fact-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 5px;
+}
+
+.fact-value {
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 550;
+    color: #fff;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SKILLS  —  grid of frosted-glass cards (panel-1)
+══════════════════════════════════════════════════════════════════ */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.skill-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    transition: border-color 0.25s, background 0.25s;
+}
+
+.skill-card:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.2);
+}
+
+.skill-name {
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.skill-bar-bg {
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FF4500, #FFD700);
+    border-radius: 2px;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.9s cubic-bezier(0.22, 1.2, 0.36, 1);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MOBILE  —  panels stack naturally, scroll system disabled
+══════════════════════════════════════════════════════════════════ */
+@media screen and (max-width: 768px) {
+
+    /* Hide scroll-driver and reset panel positions */
+    #scroll-driver { display: none; }
+
+    #hero {
+        position: relative;
+        min-height: 100vh;
+        justify-content: flex-end;
+    }
+
+    .content-wrapper-hero {
+        padding: 5rem 1rem 2rem 1rem;
+    }
+
+    .hero-scroll-hint { display: none; }
+
+    .panel {
+        position: relative;
+        transform: none !important;
+        border-top: 3px solid #FF4500;
+        box-shadow: none;
+        pointer-events: auto !important;
+    }
+
+    .panel-scroll-inner {
+        height: auto;
+        overflow: visible;
+        padding: 2rem 1rem;
+    }
+
+    #nav-dots { display: none; }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}

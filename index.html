@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Matei Stoica</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
+    <!-- Original stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- scroll-sections addon -->
+    <link rel="stylesheet" href="scroll-sections.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/powerglitch@latest/dist/powerglitch.min.js"></script>
+</head>
+<body class="loading">
+
+    <!-- ── Terminal animation overlay -->
+    <div id="terminal-animation">
+        <div class="terminal-content">
+            <span class="prompt">&gt;</span>
+            <span class="typed-text" id="typed-text"></span>
+            <span class="cursor" id="cursor"></span>
+        </div>
+    </div>
+
+    <!-- ── Navigation -->
+    <nav class="nav-container">
+        <div class="nav-toggle mobile-nav-toggle">&gt;</div>
+        <div class="nav-menu">
+            <a href="#" data-panel="0">About</a>
+            <a href="#" data-panel="1">Skills</a>
+            <a href="#" data-panel="2">Work</a>
+            <a href="#" data-panel="3">Contact</a>
+        </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════════════════
+         MAIN CONTENT
+    ══════════════════════════════════════════════════ -->  
+    <div id="main-content">
+
+        <!-- Scroll driver -->
+        <div id="scroll-driver"></div>
+
+        <!-- HERO -->
+        <div id="hero">
+            <div class="hero-inner content-wrapper-hero">
+                <div class="name-section">
+                    <h1 class="glitch">Matei Stoica</h1>
+                    <div class="social-buttons">
+                        <a href="https://www.linkedin.com/in/matei-stoica-698aa4348/" target="_blank" class="linkedin-button">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/matei0906" target="_blank" class="github-button">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="ticker-wrap" style="margin-top:1.5rem;">
+                    <div class="ticker">
+                        <span class="ticker-item">Open Source <b>★</b></span>
+                        <span class="ticker-item">React / Next.js</span>
+                        <span class="ticker-item">AI / Deep Learning <b>★</b></span>
+                        <span class="ticker-item">Python · NumPy · Pandas</span>
+                        <span class="ticker-item">Freelance Development</span>
+                        <span class="ticker-item">Web Development <b>★</b></span>
+                        <span class="ticker-item">Personal Projects</span>
+                        <span class="ticker-item">Machine Learning <b>★</b></span>
+                        <span class="ticker-item">Open Source <b>★</b></span>
+                        <span class="ticker-item">React / Next.js</span>
+                        <span class="ticker-item">AI / Deep Learning <b>★</b></span>
+                        <span class="ticker-item">Python · NumPy · Pandas</span>
+                        <span class="ticker-item">Freelance Development</span>
+                        <span class="ticker-item">Web Development <b>★</b></span>
+                        <span class="ticker-item">Personal Projects</span>
+                        <span class="ticker-item">Machine Learning <b>★</b></span>
+                    </div>
+                </div>
+
+                <div class="gradient-line"></div>
+                <h3 class="school-name">Rensselaer Polytechnic Institute</h3>
+
+                <!-- Scroll hint -->
+                <div class="hero-scroll-hint">
+                    <span>scroll</span>
+                    <svg width="12" height="16" viewBox="0 0 12 16" fill="none">
+                        <path d="M6 0v14M1 9l5 6 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- ────────────────────────────────────────────────────────
+             PANEL 0 — About
+        ──────────────────────────────────────────────────────────── -->
+        <div class="panel" id="panel-0">
+            <div class="panel-drag-bar"></div>
+            <div class="panel-scroll-inner">
+                <section id="about" class="about-me-section panel-section">
+                    <div class="projects-3d-label">// get to know me</div>
+                    <h2 class="glitch">ABOUT ME</h2>
+                    <div class="about-grid">
+                        <div class="about-bio">
+                            <p>I'm a driven Computer Science student at RPI, building projects intertwining with personal passions of mine as well as full-stack professional programs. </p>
+                            <p>I love working on full-stack web apps, experimenting with AI, and harnessing my creativity to make interfaces feel alive. When I'm not developing, you can find me working on my car or composing a new guitar riff.</p>
+                            <p>Always open to internships and joining new freelance projects. Let me help bring your idea or workspace to life!</p>
+                        </div>
+                        <div class="about-facts">
+                            <div class="fact">
+                                <div class="fact-label">School</div>
+                                <div class="fact-value">Rensselaer Polytechnic Institute</div>
+                            </div>
+                            <div class="fact">
+                                <div class="fact-label">Major</div>
+                                <div class="fact-value">Computer Science</div>
+                            </div>
+                            <div class="fact">
+                                <div class="fact-label">Interests</div>
+                                <div class="fact-value">Full-Stack · AI/ML · Automotive</div>
+                            </div>
+                            <div class="fact">
+                                <div class="fact-label">Status</div>
+                                <div class="fact-value">Open to opportunities ✦</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ────────────────────────────────────────────────────────
+             PANEL 1 — Skills
+        ──────────────────────────────────────────────────────────── -->
+        <div class="panel" id="panel-1">
+            <div class="panel-drag-bar"></div>
+            <div class="panel-scroll-inner">
+                <section id="skills" class="panel-section">
+                    <div class="projects-3d-label">// what i work with</div>
+                    <h2 class="glitch">SKILLS</h2>
+                    <div class="skills-grid">
+                        <div class="skill-card"><div class="skill-name">UI/UX Design</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.95"></div></div></div>
+                        <div class="skill-card"><div class="skill-name">HTML / CSS / JS</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.95"></div></div></div>
+                        <div class="skill-card"><div class="skill-name">Git / GitHub</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.95"></div></div></div>
+                        <div class="skill-card"><div class="skill-name">Python / ML</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.85"></div></div></div>
+                        <div class="skill-card"><div class="skill-name">React / Next.js</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.75"></div></div></div>
+                        <div class="skill-card"><div class="skill-name">Firebase</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.75"></div></div></div>
+                        <div class="skill-card"><div class="skill-name">Node.js / Vite</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.75"></div></div></div>
+                        <div class="skill-card"><div class="skill-name">TypeScript</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.70"></div></div></div>
+                        <div class="skill-card"><div class="skill-name">SQL / PHP</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.65"></div></div></div>
+                        <div class="skill-card"><div class="skill-name">Amazon AWS</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.65"></div></div></div>
+                        
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ────────────────────────────────────────────────────────
+             PANEL 2 — Projects (3-D grid)
+        ──────────────────────────────────────────────────────────── -->
+        <div class="panel" id="panel-2">
+            <div class="panel-drag-bar"></div>
+            <div class="panel-scroll-inner">
+                <section id="work" class="projects-3d-section panel-section" style="margin-top:0;padding-top:0;">
+                    <div class="projects-3d-label">// selected work</div>
+                    <h2 class="projects-3d-title glitch">PROJECTS</h2>
+
+                    <div class="projects-3d-inner">
+                        <div class="scene-wrapper" id="sceneWrapper">
+                            <div class="grid-3d" id="grid3d">
+                                <div class="grid-row" data-dir="-1">
+                                    <div class="card-wrap">
+                                        <a href="https://github.com/matei0906/resonance" target="_blank" rel="noopener noreferrer" class="card-link">
+                                            <div class="card">
+                                                <img class="card-thumb" src="images/resonance.png" alt="Resonance">
+                                                <div class="card-overlay">
+                                                    <div class="card-title">Resonance</div>
+                                                    <div class="card-tags"><span class="tag">HTML</span><span class="tag">PHP</span><span class="tag">SQL</span><span class="tag">AWS</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <a href="https://github.com/austinjames95/tasteCampusWEB" target="_blank" rel="noopener noreferrer" class="card-link">
+                                            <div class="card">
+                                                <img class="card-thumb" src="images/tastecampus.png" alt="TasteCampus">
+                                                <div class="card-overlay">
+                                                    <div class="card-title">TasteCampus</div>
+                                                    <div class="card-tags"><span class="tag">UI/UX</span><span class="tag">HTML</span><span class="tag">Firebase</span><span class="tag">Node.JS</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <a href="https://github.com/matei0906/AVID" target="_blank" rel="noopener noreferrer" class="card-link">
+                                            <div class="card">
+                                                <img class="card-thumb" src="images/instagram.png" alt="AVID AI Content Checker">
+                                                <div class="card-overlay">
+                                                    <div class="card-title">AVID AI Content Checker</div>
+                                                    <div class="card-tags"><span class="tag">AI/ML</span><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="grid-row" data-dir="1">
+                                    <div class="card-wrap">
+                                        <a href="https://github.com/matei0906/mateistoica" target="_blank" rel="noopener noreferrer" class="card-link">
+                                            <div class="card">
+                                                <img class="card-thumb" src="images/msv1.png" alt="Matei Stoica V1">
+                                                <div class="card-overlay">
+                                                    <div class="card-title">Portfolio Website V1</div>
+                                                    <div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <a href="https://github.com/matei0906/CRVE" target="_blank" rel="noopener noreferrer" class="card-link">
+                                            <div class="card">
+                                                <img class="card-thumb" src="images/maps.jpg" alt="CRVE">
+                                                <div class="card-overlay">
+                                                    <div class="card-title">CRVE</div>
+                                                    <div class="card-tags"><span class="tag">Mapbox</span><span class="tag">React</span><span class="tag">Node.JS</span><span class="tag">PostgreSQL</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="projects-3d-strip">
+                            <div class="strip-label">Total Projects</div>
+                            <div class="strip-count">05</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ────────────────────────────────────────────────────────
+             PANEL 3 — Contact
+        ──────────────────────────────────────────────────────────── -->
+        <div class="panel" id="panel-3">
+            <div class="panel-drag-bar"></div>
+            <div class="panel-scroll-inner">
+                <div class="contact-form-section panel-section">
+                    <h2 class="glitch">Get In Touch</h2>
+                    <form class="contact-form" id="contact-form" action="https://formspree.io/f/xqaywzvl" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn glitch">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send Message</span>
+                        </button>
+                    </form>
+                    <div id="form-success" class="form-success" style="display:none;">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Thank you! Your message has been sent successfully.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer at bottom of contact panel, full width -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <p class="copyright">© <span id="current-year"></span> Matei Stoica</p>
+                    <a href="https://github.com/matei0906" target="_blank" class="footer-github-btn glitch">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Nav dots -->
+        <nav id="nav-dots" aria-label="Section navigation">
+            <div class="nav-dot active"  data-target="hero"    title="Home"></div>
+            <div class="nav-dot"         data-target="0"       title="About"></div>
+            <div class="nav-dot"         data-target="1"       title="Skills"></div>
+            <div class="nav-dot"         data-target="2"       title="Work"></div>
+            <div class="nav-dot"         data-target="3"       title="Contact"></div>
+        </nav>
+
+    </div><!-- /#main-content -->
+
+    <!-- Original script -->
+    <script src="script.js"></script>
+
+    <!-- Scroll-section controller -->
+    <script>
+    (function () {
+        // Wait until main-content is visible
+        function initScrollSections() {
+            const PANELS     = Array.from(document.querySelectorAll('.panel'));
+            const NUM_PANELS = PANELS.length;
+            const NAV_DOTS   = Array.from(document.querySelectorAll('#nav-dots .nav-dot'));
+
+            // 3-D grid refs
+            const grid3d   = document.getElementById('grid3d');
+            const gridRows = document.querySelectorAll('.grid-row');
+            const START_X  = 72;
+            const ROW_OFFSET = 120;
+
+            // Set scroll-driver height
+            function setDriverHeight() {
+                document.getElementById('scroll-driver').style.height =
+                    `${(NUM_PANELS + 1) * window.innerHeight}px`;
+            }
+            setDriverHeight();
+            window.addEventListener('resize', setDriverHeight);
+
+            function easeOut(t)    { return 1 - Math.pow(1 - t, 3); }
+            function easeInOut(t)  { return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2; }
+
+            function onScroll() {
+                const sy   = window.scrollY;
+                const winH = window.innerHeight;
+                const slot = sy / winH;   // fractional slot index
+
+                // ── Nav dots ──
+                const activeIdx = Math.round(slot);
+                NAV_DOTS.forEach((d, i) => d.classList.toggle('active', i === activeIdx));
+
+                // ── Panels ──
+                PANELS.forEach((panel, i) => {
+                    // panel i is "slot" i+1
+                    const progress = slot - i;
+                    let ty;
+                    if      (progress <= 0) ty = 1;
+                    else if (progress >= 1) ty = 0;
+                    else                    ty = 1 - easeOut(progress);
+
+                    panel.style.transform = `translateY(${ty * 100}vh)`;
+                    panel.classList.toggle('is-active', progress > 0);
+
+                    // 3-D grid tilt
+                    if (panel.id === 'panel-2' && grid3d) {
+                        const t  = easeInOut(Math.min(1, Math.max(0, progress)));
+                        grid3d.style.transform = `rotateX(${START_X*(1-t)}deg) rotateY(${-8*(1-t)}deg)`;
+                        gridRows.forEach(row => {
+                            const dir = parseFloat(row.dataset.dir) || 1;
+                            row.style.transform = `translateX(${dir * ROW_OFFSET * (1-t)}px)`;
+                        });
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+
+            // ── Smooth slide animation (one scroll = one page) ──
+            const SLIDE_DURATION_MS = 550;
+            const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+            let isSliding = false;
+            let slideRaf = null;
+
+            function slideToPage(targetPage) {
+                const winH = window.innerHeight;
+                const maxPage = NUM_PANELS;
+                targetPage = Math.max(0, Math.min(maxPage, Math.round(targetPage)));
+                const startY = window.scrollY;
+                const endY = targetPage * winH;
+                if (Math.abs(startY - endY) < 2) return;
+
+                isSliding = true;
+                const startTime = performance.now();
+
+                function tick(now) {
+                    const elapsed = now - startTime;
+                    const t = Math.min(1, elapsed / SLIDE_DURATION_MS);
+                    const eased = easeOutCubic(t);
+                    const y = startY + (endY - startY) * eased;
+                    window.scrollTo(0, y);
+                    onScroll();
+                    if (t < 1) {
+                        slideRaf = requestAnimationFrame(tick);
+                    } else {
+                        isSliding = false;
+                        slideRaf = null;
+                    }
+                }
+                if (slideRaf !== null) cancelAnimationFrame(slideRaf);
+                slideRaf = requestAnimationFrame(tick);
+            }
+
+            window.addEventListener('wheel', function (e) {
+                if (window.innerWidth <= 768) return;
+                if (isSliding) {
+                    e.preventDefault();
+                    return;
+                }
+                const winH = window.innerHeight;
+                const currentPage = Math.round(window.scrollY / winH);
+                const maxPage = NUM_PANELS;
+                let targetPage = currentPage;
+                if (e.deltaY > 0) targetPage = Math.min(currentPage + 1, maxPage);
+                else if (e.deltaY < 0) targetPage = Math.max(currentPage - 1, 0);
+                if (targetPage === currentPage) return;
+                e.preventDefault();
+                slideToPage(targetPage);
+            }, { passive: false });
+
+            // ── Nav dot clicks ──
+            NAV_DOTS.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        window.scrollTo({ top: i * window.innerHeight, behavior: 'smooth' });
+                        return;
+                    }
+                    slideToPage(i);
+                });
+            });
+
+            // Nav menu links
+            document.querySelectorAll('.nav-menu a[data-panel]').forEach(a => {
+                a.addEventListener('click', e => {
+                    e.preventDefault();
+                    const idx = parseInt(a.dataset.panel);
+                    const targetPage = idx + 1; // panel 0 = page 1, etc.
+                    if (window.innerWidth <= 768) {
+                        window.scrollTo({ top: targetPage * window.innerHeight, behavior: 'smooth' });
+                        return;
+                    }
+                    slideToPage(targetPage);
+                });
+            });
+
+            // Skill bars: animate when panel-1 becomes active
+            const skillFills = document.querySelectorAll('.skill-bar-fill');
+            let skillsAnimated = false;
+            const panel1 = document.getElementById('panel-1');
+
+            const skillObserver = new MutationObserver(() => {
+                if (!skillsAnimated && panel1.classList.contains('is-active')) {
+                    skillsAnimated = true;
+                    skillFills.forEach(fill => {
+                        const w = parseFloat(fill.style.getPropertyValue('--w') || 1);
+                        fill.style.transform = `scaleX(${w})`;
+                    });
+                }
+            });
+            skillObserver.observe(panel1, { attributes: true, attributeFilter: ['class'] });
+        }
+
+        // Delay init until terminal animation is done
+        const mc = document.getElementById('main-content');
+        if (!mc) return;
+
+        if (mc.classList.contains('visible')) {
+            initScrollSections();
+        } else {
+            const obs = new MutationObserver(() => {
+                if (mc.classList.contains('visible')) {
+                    obs.disconnect();
+                    // Small delay so CSS transition settles
+                    setTimeout(initScrollSections, 100);
+                }
+            });
+            obs.observe(mc, { attributes: true, attributeFilter: ['class'] });
+        }
+    })();
+    </script>
+
+</body>
+</html>
